@@ -2,7 +2,7 @@ import { Item } from '../Item/Item.tsx';
 import { UrlData } from '../../utils/parseUrl.ts';
 
 interface UrlDataProps {
-  urlData: UrlData;
+  urlData: UrlData | null;
 }
 
 export const UrlDetails = ({ urlData }: UrlDataProps) => {

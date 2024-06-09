@@ -1,21 +1,44 @@
 import { wrapper, header, urlInput, button } from './app.module.css';
-import { parseUrl } from './utils/parseUrl.ts';
 import { UrlDetails } from './components/UrlData/UrlDetails.tsx';
+import { useEffect, useState } from 'react';
+import { parseUrl } from './utils/parseUrl.ts';
+import { isValidUrl } from './utils/isValidUrl.ts';
+
+const handleParse = (url?: string) => {
+  const currentUrl = new URL(window.location.href);
+  if (!url) {
+    currentUrl.searchParams.delete('uri');
+  } else {
+    currentUrl.searchParams.set('uri', url);
+  }
+  history.pushState({}, '', currentUrl);
+};
+
+const urlParams = new URLSearchParams(window.location.search);
 
 export const App = () => {
-  const data = parseUrl(
-    'https://mci.pl.canalplus.com/cas/login?service=https%3A%2F%2Fmci.pl.canalplus.com%2Fcas%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3Dtvod.redlabs.pl%26redirect_uri%3Dhttps%253A%252F%252Fcp-premiery-uat-fo.redgelabs.com%252Fsubscriber%252Flogin%252Fcanalplus%26response_type%3Dcode%26client_name%3DCasOAuthClient',
-  );
+  const defaultUrl = urlParams.get('uri') || '';
 
-  console.log(parseUrl('https://example.com?test1=https://www.google.com&test2'));
+  const [value, setValue] = useState(defaultUrl);
+
+  useEffect(() => {
+    handleParse(value);
+  }, [value]);
 
   return (
     <div className={wrapper}>
       <h1 className={header}>URL PARSER</h1>
-      <input className={urlInput} placeholder="paste your url" />
-      <button className={button}>PARSE</button>
+      <input
+        value={value}
+        onChange={(elem) => setValue(elem.target.value)}
+        className={urlInput}
+        placeholder="paste your url"
+      />
+      {/*<button onClick={() => handleParse(value)} className={button}>*/}
+      {/*  PARSE*/}
+      {/*</button>*/}
 
-      <UrlDetails urlData={data} />
+      {!!value && (isValidUrl(value) ? <UrlDetails urlData={parseUrl(value)} /> : 'Invalid URL')}
     </div>
   );
 };
