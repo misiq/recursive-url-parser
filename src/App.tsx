@@ -7,6 +7,8 @@ export const App = () => {
     'https://mci.pl.canalplus.com/cas/login?service=https%3A%2F%2Fmci.pl.canalplus.com%2Fcas%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3Dtvod.redlabs.pl%26redirect_uri%3Dhttps%253A%252F%252Fcp-premiery-uat-fo.redgelabs.com%252Fsubscriber%252Flogin%252Fcanalplus%26response_type%3Dcode%26client_name%3DCasOAuthClient',
   );
 
+  console.log(parseUrl('https://example.com?test1=https://www.google.com&test2'));
+
   return (
     <div className={wrapper}>
       <h1 className={header}>URL PARSER</h1>

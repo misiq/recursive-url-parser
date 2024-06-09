@@ -1,12 +1,12 @@
 import { isValidUrl } from './isValidUrl.ts';
 
-export type SearchParams = { [key: string]: string | null | UrlData };
+export type SearchParams = { [key: string]: string | UrlData };
 
 export type UrlData = {
   protocol: string;
   host: string;
   path: string;
-  searchParams?: UrlData;
+  [key: string]: string | UrlData;
 };
 
 export const parseUrl = (url: string): UrlData => {
