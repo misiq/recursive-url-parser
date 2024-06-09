@@ -1,5 +1,6 @@
 import { wrapper, header, urlInput } from './app.module.css';
 import { UrlDetails } from './components/UrlData/UrlDetails.tsx';
+
 import { useEffect, useState } from 'react';
 import { parseUrl } from './utils/parseUrl.ts';
 import { isValidUrl } from './utils/isValidUrl.ts';
