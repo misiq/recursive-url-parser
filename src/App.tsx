@@ -35,6 +35,12 @@ export const App = () => {
         className={urlInput}
         placeholder="paste your url"
       />
+
+      <div>
+        <button onClick={() => setValue('')}>Clear</button>
+        <button onClick={() => (window.location.href = value)}>Go to URL</button>
+      </div>
+
       {/*<button onClick={() => handleParse(value)} className={button}>*/}
       {/*  PARSE*/}
       {/*</button>*/}
