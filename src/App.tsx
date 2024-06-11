@@ -38,7 +38,9 @@ export const App = () => {
 
       <div>
         <button onClick={() => setValue('')}>Clear</button>
-        <button onClick={() => (window.location.href = value)}>Go to URL</button>
+        <a href={value} target="_blank" rel="noreferrer">
+          <button>Go to URL</button>
+        </a>
       </div>
 
       {/*<button onClick={() => handleParse(value)} className={button}>*/}
